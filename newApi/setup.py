@@ -92,23 +92,18 @@ async def update_user_MH(ans: answers):
 
         for i in questionqrs[result['qtest1']][' ADHD']:
             adhd_s += float(result['answers'][i])
-        n.append(adhd_s)
 
         for i in questionqrs[result['qtest1']][' Self']:
             self_s += float(result['answers'][i])
-        n.append(self_s)
 
         for i in questionqrs[result['qtest1']][' Suicide']:
             suicide_s += float(result['answers'][i])
-        n.append(suicide_s)
 
         for i in questionqrs[result['qtest1']][' Anxiety']:
             anxiety_s += float(result['answers'][i])
-        n.append(anxiety_s)
 
         for i in questionqrs[result['qtest1']][' Depression']:
             depression_s += float(result['answers'][i])
-        n.append(depression_s)
 
         # print(n)
 
