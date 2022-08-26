@@ -107,15 +107,15 @@ async def update_user_MH(ans: answers):
 
         # print(n)
 
-        db.collection('users').document(ans.u_id).update(
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {"ADHD": firestore.Increment(adhd_s)})
-        db.collection('users').document(ans.u_id).update(
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {"Self": firestore.Increment(self_s)})
-        db.collection('users').document(ans.u_id).update(
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {"Suicide": firestore.Increment(suicide_s)})
-        db.collection('users').document(ans.u_id).update(
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {"Anxiety": firestore.Increment(anxiety_s)})
-        db.collection('users').document(ans.u_id).update(
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {"Depression": firestore.Increment(depression_s)})
 
     return
