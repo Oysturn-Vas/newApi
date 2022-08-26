@@ -14,6 +14,34 @@ questionqrs = {
         ' Anxiety': [1, 6, 13, 19],
         ' Suicide': [3, 5, 8, 14],
         ' Depression': [2, 8, 11, 17]
+    },
+    'qtest2': {
+        ' ADHD': [2, 7, 9, 15],
+        ' Self': [3, 13, 0, 18],
+        ' Anxiety': [5, 1, 12, 10],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest3': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest4': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest5': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
     }
 }
 
