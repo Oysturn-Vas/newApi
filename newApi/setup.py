@@ -89,8 +89,6 @@ async def update_user_MH(ans: answers):
         #     depression_s += ans_maps[result['answer']
         #                              [questionqrs[result['qtest1']][' Depression'][i]]]
 
-        n = np.arr()
-
         for i in questionqrs[result['qtest1']][' ADHD']:
             adhd_s += float(result['answers'][i])
         n.append(adhd_s)
