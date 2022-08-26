@@ -1,7 +1,7 @@
-import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from pydantic import BaseModel
+import numpy as np
 
 from fastapi import FastAPI
 
@@ -84,33 +84,43 @@ async def update_user_MH(ans: answers):
         #                        [questionqrs[result['qtest1']][' Self'][i]]]
         #     suicide_s += ans_maps[result['answer']
         #                           [questionqrs[result['qtest1']][' Suicide'][i]]]
-        #     anxiety_s += ans_maps[result['answer']
+        #     anxiety r_s += ans_maps[result['answer']
         #                           [questionqrs[result['qtest1']][' Anxiety'][i]]]
         #     depression_s += ans_maps[result['answer']
         #                              [questionqrs[result['qtest1']][' Depression'][i]]]
 
+
         for i in questionqrs[result['qtest1']][' ADHD']:
             adhd_s += float(result['answers'][i])
+        n.append(adhd_s)
+
         for i in questionqrs[result['qtest1']][' Self']:
             self_s += float(result['answers'][i])
+        n.append(self_s)
+
         for i in questionqrs[result['qtest1']][' Suicide']:
             suicide_s += float(result['answers'][i])
+        n.append(suicide_s)
+
         for i in questionqrs[result['qtest1']][' Anxiety']:
             anxiety_s += float(result['answers'][i])
+        n.append(anxiety_s)
+
         for i in questionqrs[result['qtest1']][' Depression']:
             depression_s += float(result['answers'][i])
+        n.append(depression_s)
 
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" ADHD": firestore.Increment(adhd_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Self": firestore.Increment(self_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Suicide": firestore.Increment(suicide_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Anxiety": firestore.Increment(anxiety_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Depression": firestore.Increment(depression_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {"count": firestore.Increment(1)})
+        # print(n)
+
+        db.collection('users').document(ans.u_id).update(
+            {"ADHD": firestore.Increment(adhd_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Self": firestore.Increment(self_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Suicide": firestore.Increment(suicide_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Anxiety": firestore.Increment(anxiety_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Depression": firestore.Increment(depression_s)})
 
     return
