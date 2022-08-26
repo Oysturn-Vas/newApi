@@ -1,7 +1,7 @@
-import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from pydantic import BaseModel
+import numpy as np
 
 from fastapi import FastAPI
 
@@ -9,6 +9,34 @@ app = FastAPI()
 
 questionqrs = {
     'qtest1': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest2': {
+        ' ADHD': [2, 7, 9, 15],
+        ' Self': [3, 13, 0, 18],
+        ' Anxiety': [5, 1, 12, 10],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest3': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest4': {
+        ' ADHD': [0, 10, 12, 16],
+        ' Self': [4, 9, 15, 19],
+        ' Anxiety': [1, 6, 13, 19],
+        ' Suicide': [3, 5, 8, 14],
+        ' Depression': [2, 8, 11, 17]
+    },
+    'qtest5': {
         ' ADHD': [0, 10, 12, 16],
         ' Self': [4, 9, 15, 19],
         ' Anxiety': [1, 6, 13, 19],
@@ -56,31 +84,44 @@ async def update_user_MH(ans: answers):
         #                        [questionqrs[result['qtest1']][' Self'][i]]]
         #     suicide_s += ans_maps[result['answer']
         #                           [questionqrs[result['qtest1']][' Suicide'][i]]]
-        #     anxiety_s += ans_maps[result['answer']
+        #     anxiety r_s += ans_maps[result['answer']
         #                           [questionqrs[result['qtest1']][' Anxiety'][i]]]
         #     depression_s += ans_maps[result['answer']
         #                              [questionqrs[result['qtest1']][' Depression'][i]]]
 
+        n = np.arr()
+
         for i in questionqrs[result['qtest1']][' ADHD']:
             adhd_s += float(result['answers'][i])
+        n.append(adhd_s)
+
         for i in questionqrs[result['qtest1']][' Self']:
             self_s += float(result['answers'][i])
+        n.append(self_s)
+
         for i in questionqrs[result['qtest1']][' Suicide']:
             suicide_s += float(result['answers'][i])
+        n.append(suicide_s)
+
         for i in questionqrs[result['qtest1']][' Anxiety']:
             anxiety_s += float(result['answers'][i])
+        n.append(anxiety_s)
+
         for i in questionqrs[result['qtest1']][' Depression']:
             depression_s += float(result['answers'][i])
+        n.append(depression_s)
 
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" ADHD": firestore.Increment(adhd_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Self": firestore.Increment(self_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Suicide": firestore.Increment(suicide_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Anxiety": firestore.Increment(anxiety_s)})
-        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
-            {" Depression": firestore.Increment(depression_s)})
+        # print(n)
+
+        db.collection('users').document(ans.u_id).update(
+            {"ADHD": firestore.Increment(adhd_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Self": firestore.Increment(self_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Suicide": firestore.Increment(suicide_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Anxiety": firestore.Increment(anxiety_s)})
+        db.collection('users').document(ans.u_id).update(
+            {"Depression": firestore.Increment(depression_s)})
 
     return
