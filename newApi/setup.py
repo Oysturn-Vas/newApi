@@ -110,5 +110,7 @@ async def update_user_MH(ans: answers):
             {" Anxiety": firestore.Increment(anxiety_s)})
         db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
             {" Depression": firestore.Increment(depression_s)})
+        db.collection('CHATBOT_HISTORY').document(ans.u_id).update(
+            {"count": firestore.Increment(1)})
 
     return
